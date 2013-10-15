@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<eclipse-userlibraries version="2">
+    <library name="OpenCV-2.4.6" systemlibrary="false">
+        <archive nativelibpaths="C:/Users/Ruidorey/VisaoComp/opencv/x64" path="C:/opencv-246.jar"/>
+    </library>
+</eclipse-userlibraries>
