@@ -14,31 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>open-cv/Debug</name>
-			<type>2</type>
-			<locationURI>PARENT-1-PROJECT_LOC/git/black/Black/opencv/Debug</locationURI>
-		</link>
-		<link>
-			<name>open-cv/Release</name>
-			<type>2</type>
-			<locationURI>PARENT-1-PROJECT_LOC/git/black/Black/opencv/Release</locationURI>
-		</link>
-		<link>
-			<name>open-cv/opencv-246.jar</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/git/black/Black/opencv/opencv-246.jar</locationURI>
-		</link>
-		<link>
-			<name>open-cv/x64</name>
-			<type>2</type>
-			<locationURI>PARENT-1-PROJECT_LOC/git/black/Black/opencv/x64</locationURI>
-		</link>
-		<link>
-			<name>open-cv/x86</name>
-			<type>2</type>
-			<locationURI>PARENT-1-PROJECT_LOC/git/black/Black/opencv/x86</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
