@@ -20,10 +20,10 @@ public void run() {
 
  // Create a face detector from the cascade file in the resources
  // directory.
- String facefilterpath = getClass().getResource("../resources/lbpcascade_frontalface.xml").getPath();
+ String facefilterpath = getClass().getResource("../resources/haarcascade_mcs_eyepair_big.xml").getPath();
  facefilterpath =  facefilterpath.substring(1,facefilterpath.length());
  CascadeClassifier faceDetector = new CascadeClassifier(facefilterpath);
- String pngpath = getClass().getResource("../resources/lena.png").getPath();
+ String pngpath = getClass().getResource("../resources/IMG_0762.JPG").getPath();
  pngpath =  pngpath.substring(1,pngpath.length());
  Mat image = Highgui.imread(pngpath);
 
