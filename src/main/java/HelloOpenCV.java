@@ -1,6 +1,7 @@
 package main.java;
+import java.awt.Color;
+
 import org.opencv.core.Core;
-import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
 import org.opencv.core.Point;
@@ -8,6 +9,12 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.highgui.Highgui;
 import org.opencv.objdetect.CascadeClassifier;
+import org.opencv.imgproc.Imgproc;
+import org.opencv.highgui.*;
+import org.opencv.core.*;
+
+
+
 
 
 //
@@ -32,14 +39,39 @@ public void run() {
  MatOfRect faceDetections = new MatOfRect();
  faceDetector.detectMultiScale(image, faceDetections);
 
- System.out.println(String.format("Detected %s faces", faceDetections.toArray().length));
+ 
+ Mat image2=image;
+ 
+ 
+ 
+ Imgproc.cvtColor(image2, image, 6); // 6 = CV_BGR2GRAY not working
+// Imgproc.GaussianBlur(image, image, new Size(9,9), 2, 2);
+ //Imgproc.medianBlur(image,image, 107);
+ MatOfPoint3f circles = new MatOfPoint3f();
+ Imgproc.HoughCircles(image, circles, Imgproc.CV_HOUGH_GRADIENT,2, image.rows()/4,200,100,0,10000);
 
+ 
+ System.out.println(String.format("Detected %s faces", faceDetections));
  // Draw a bounding box around each face.
  for (Rect rect : faceDetections.toArray()) {
-     Core.rectangle(image, new Point(rect.x, rect.y), new Point(rect.x + rect.width, rect.y + rect.height), new Scalar(0, 255, 0));
+ //    Core.rectangle(image, new Point(rect.x, rect.y), new Point(rect.x + rect.width, rect.y + rect.height), new Scalar(0, 255, 0),100);
  }
 
+ System.out.println(String.format("Detected %s circles", circles.total()));
+ 
+ Imgproc.cvtColor(image, image, 8); // 6 = CV_BGR2GRAY not working
+ 
+for(Point3 circle : circles.toArray()){
+ 	 Point center = new Point(circle.x, circle.y);
+     int radius = (int) Math.round(circle.z);      
+     Core.circle(image, center, 3,new Scalar(0,255,0), -1, 8, 0);
+     Core.circle(image, center, radius, new Scalar(0,0,255), 3, 8, 0);
+    // Core.circle(image, center, radius, new Scalar(0,255,0), 10,8, 0);    
+    }
+ 
+ Core.circle(image, new Point(100,100), 10, new Scalar(0,255,0), 10, 8, 0);  
  // Save the visualized detection.
+
  String filename = "faceDetection.png";
  System.out.println(String.format("Writing %s", filename));
  Highgui.imwrite(filename, image);
@@ -47,9 +79,11 @@ public void run() {
 }
 
 public class HelloOpenCV {
-public static void main(String[] args) {
- System.out.println("Hello, OpenCV");
 
+	  
+public static void main(String[] args) {
+
+	System.out.println("Hello, OpenCV");
  // Load the native library.
  System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
  new DetectFaceDemo().run();
